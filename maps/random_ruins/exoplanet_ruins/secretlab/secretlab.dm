@@ -35,7 +35,7 @@
 	l_ear = /obj/item/device/radio/headset
 	uniform = /obj/item/clothing/under/gentlesuit
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat
-	id_type = null
+	id_type = /obj/item/weapon/card/id/secretlab
 
 /decl/hierarchy/outfit/job/planet_scientist/chief
 	name = OUTFIT_JOB_NAME("Chief Researcher")
@@ -70,12 +70,24 @@
 	name = "Hydroponics"
 	icon_state = "hydro"
 
+/area/map_template/secretlab/anomaly
+    name = "Anomaly Testing"
+    icon_state = "anomaly"
+
+/area/map_template/secretlab/xenobio
+    name = "Xenobiology"
+    icon_state = "xenobio"
+
+/area/map_template/secretlab/garden
+	name = "Garden"
+	icon_state = "garden"
+
 /area/map_template/secretlab/mining
 	name = "Mineral Processing"
 	icon_state = "mining"
 
 /area/map_template/secretlab/power
-	name = "\improper Power Compartment"
+	name = "\improper Fusion Reactor"
 	icon_state = "power"
 
 /area/map_template/secretlab/atmospherics
@@ -103,17 +115,34 @@
 	name = "\improper Cell 2"
 	icon_state = "cell2"
 
+/area/map_template/secretlab/cell3
+	name = "\improper Cell 3"
+	icon_state = "cell3"
+
+/area/map_template/secretlab/cell4
+	name = "\improper Cell 4"
+	icon_state = "cell4"
+
 /area/map_template/secretlab/wc
 	name = "\improper Bathroom"
 	icon_state = "wc"
 
-
+/var/const/access_secretlab = "ACCESS_SECRETLAB"
 /var/const/access_secretlab_chief = "ACCESS_SECRETLAB_CHIEF"
+
+/datum/access/secretlab
+	id = access_secretlab
+	desc = "Secret Lab"
 
 /datum/access/secretlab_chief
 	id = access_secretlab_chief
-	desc = "Secret Lab Chief Researcher"
-	region = ACCESS_REGION_NONE
+	desc = "Secret Lab Chief's Office"
+
+/obj/item/weapon/card/id/secretlab
+	access = list(access_secretlab)
 
 /obj/item/weapon/card/id/secretlab_chief
-	access = list(access_secretlab_chief)
+	access = list(
+		access_secretlab,
+		access_secretlab_chief
+	)
