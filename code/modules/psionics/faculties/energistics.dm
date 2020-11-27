@@ -7,6 +7,34 @@
 /decl/psionic_power/energistics
 	faculty = PSI_ENERGISTICS
 
+// OPERANT POWERS
+
+// Spark, allows you to create sparks and potentially start fires.
+/decl/psionic_power/energistics/spark
+	name =            "Spark"
+	cost =            1
+	cooldown =        1
+	use_melee =       TRUE
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
+
+/decl/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target)
+	if(isnull(target) || istype(target)) return FALSE
+	. = ..()
+	if(.)
+		if(istype(target,/obj/item/clothing/mask/smokable/cigarette))
+			var/obj/item/clothing/mask/smokable/cigarette/S = target
+			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
+			playsound(S.loc, "sparks", 50, 1)
+		else
+			var/datum/effect/effect/system/spark_spread/sparks = new ()
+			sparks.set_up(3, 0, get_turf(target))
+			sparks.start()
+		return TRUE
+
+// MASTER POWERS
+
+// Disrupt, allows you to create a localised electromagnetic pulse against a nearby target.
 /decl/psionic_power/energistics/disrupt
 	name =            "Disrupt"
 	cost =            10
@@ -26,31 +54,7 @@
 		empulse(target, 0, 1)
 		return TRUE
 
-/decl/psionic_power/energistics/electrocute
-	name =            "Electrocute"
-	cost =            15
-	cooldown =        25
-	use_melee =       TRUE
-	min_rank =        PSI_RANK_GRANDMASTER
-	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
-
-/decl/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BP_CHEST && user.zone_sel.selecting != BP_GROIN)
-		return FALSE
-	if(istype(target, /turf))
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
-		if(istype(target))
-			target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
-			return TRUE
-		else if(isatom(target))
-			var/obj/item/weapon/cell/charging_cell = target.get_cell()
-			if(istype(charging_cell))
-				charging_cell.give(rand(15,45))
-			return TRUE
-
+// Zorch, allows you to fire tasers, lasers, or deadlier lasers from your eyes. Lethality scales with Energistics rank.
 /decl/psionic_power/energistics/zorch
 	name =             "Zorch"
 	cost =             20
@@ -91,24 +95,30 @@
 			pew.launch(target, user.zone_sel.selecting, (target.x-user.x), (target.y-user.y))
 			return TRUE
 
-/decl/psionic_power/energistics/spark
-	name =            "Spark"
-	cost =            1
-	cooldown =        1
-	use_melee =       TRUE
-	min_rank =        PSI_RANK_OPERANT
-	use_description = "Target a non-living target in melee range on harm intent to cause some sparks to appear. This can light fires."
+// GRANDMASTER POWERS
 
-/decl/psionic_power/energistics/spark/invoke(var/mob/living/user, var/mob/living/target)
-	if(isnull(target) || istype(target)) return FALSE
+// Electrocute, allows you to electrocute a target at melee range.
+/decl/psionic_power/energistics/electrocute
+	name =            "Electrocute"
+	cost =            15
+	cooldown =        25
+	use_melee =       TRUE
+	min_rank =        PSI_RANK_GRANDMASTER
+	use_description = "Target the chest or groin while on harm intent to use a melee attack that electrocutes a victim."
+
+/decl/psionic_power/energistics/electrocute/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.zone_sel.selecting != BP_CHEST && user.zone_sel.selecting != BP_GROIN)
+		return FALSE
+	if(istype(target, /turf))
+		return FALSE
 	. = ..()
 	if(.)
-		if(istype(target,/obj/item/clothing/mask/smokable/cigarette))
-			var/obj/item/clothing/mask/smokable/cigarette/S = target
-			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
-			playsound(S.loc, "sparks", 50, 1)
-		else
-			var/datum/effect/effect/system/spark_spread/sparks = new ()
-			sparks.set_up(3, 0, get_turf(target))
-			sparks.start()
-		return TRUE
+		user.visible_message("<span class='danger'>\The [user] sends a jolt of electricity arcing into \the [target]!</span>")
+		if(istype(target))
+			target.electrocute_act(rand(15,45), user, 1, user.zone_sel.selecting)
+			return TRUE
+		else if(isatom(target))
+			var/obj/item/weapon/cell/charging_cell = target.get_cell()
+			if(istype(charging_cell))
+				charging_cell.give(rand(15,45))
+			return TRUE

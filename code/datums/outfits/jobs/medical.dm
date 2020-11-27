@@ -93,15 +93,6 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	id_type = /obj/item/weapon/card/id/medical/psychiatrist
 
-/decl/hierarchy/outfit/job/medical/paramedic
-	name = OUTFIT_JOB_NAME("Paramedic")
-	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
-	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	shoes = /obj/item/clothing/shoes/jackboots
-	l_hand = /obj/item/weapon/storage/firstaid/adv
-	belt = /obj/item/weapon/storage/belt/medical/emt
-	id_type = /obj/item/weapon/card/id/medical/paramedic
-	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency medical technician")

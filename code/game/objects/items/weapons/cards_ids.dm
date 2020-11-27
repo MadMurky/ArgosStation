@@ -474,9 +474,6 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/weapon/card/id/medical/psychiatrist
 	job_access_type = /datum/job/psychiatrist
 
-/obj/item/weapon/card/id/medical/paramedic
-	job_access_type = /datum/job/Paramedic
-
 /obj/item/weapon/card/id/medical/head
 	name = "identification card"
 	desc = "A card which represents care and compassion."
@@ -520,9 +517,6 @@ var/const/NO_EMAG_ACT = -50
 	job_access_type = /datum/job/scientist
 	detail_color = COLOR_PALE_PURPLE_GRAY
 
-/obj/item/weapon/card/id/science/xenobiologist
-	job_access_type = /datum/job/xenobiologist
-
 /obj/item/weapon/card/id/science/roboticist
 	job_access_type = /datum/job/roboticist
 
@@ -564,9 +558,6 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/weapon/card/id/civilian/janitor
 	job_access_type = /datum/job/janitor
-
-/obj/item/weapon/card/id/civilian/librarian
-	job_access_type = /datum/job/librarian
 
 /obj/item/weapon/card/id/civilian/internal_affairs_agent
 	job_access_type = /datum/job/lawyer

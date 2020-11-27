@@ -16,40 +16,66 @@
 	if(. && target.deflect_psionic_attack(user))
 		return FALSE
 
-/decl/psionic_power/coercion/blindstrike
-	name =           "Blindstrike"
-	cost =           8
-	cooldown =       120
-	use_ranged =     TRUE
-	use_melee =      TRUE
-	min_rank =       PSI_RANK_GRANDMASTER
-	use_description = "Target the eyes or mouth on disarm intent and click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
+// OPERANT POWERS
 
-/decl/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BP_MOUTH && user.zone_sel.selecting != BP_EYES)
+// Psi-assay, lets you tell if someone else is psionic or not.
+/decl/psionic_power/coercion/assay
+	name =            "Assay"
+	cost =            15
+	cooldown =        100
+	use_grab =        TRUE
+	min_rank =        PSI_RANK_OPERANT
+	use_description = "Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
+
+/decl/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.zone_sel.selecting != BP_HEAD)
 		return FALSE
 	. = ..()
 	if(.)
-		user.visible_message(SPAN_DANGER("\The [user] suddenly throws back their head, as though screaming silently!"))
-		to_chat(user, SPAN_DANGER("You strike at all around you with a deafening psionic scream!"))
-		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
-			if(M == user)
-				continue
-			var/blocked = 100 * M.get_blocked_ratio(null, PSIONIC)
-			if(prob(blocked))
-				to_chat(M, SPAN_DANGER("A psionic onslaught strikes your mind, but you withstand it!"))
-				continue
-			if(prob(60) && iscarbon(M))
-				var/mob/living/carbon/C = M
-				if(C.can_feel_pain())
-					M.emote("scream")
-			to_chat(M, SPAN_DANGER("Your senses are blasted into oblivion by a psionic scream!"))
-			M.flash_eyes()
-			M.eye_blind = max(M.eye_blind,3)
-			M.ear_deaf = max(M.ear_deaf,6)
-			M.confused = rand(3,8)
+		user.visible_message(SPAN_WARNING("\The [user] holds the head of \the [target] in both hands..."))
+		to_chat(user, SPAN_NOTICE("You insinuate your mentality into that of \the [target]..."))
+		to_chat(target, SPAN_WARNING("Your persona is being probed by the psychic lens of \the [user]."))
+		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
+			user.psi.backblast(rand(5,10))
+			return TRUE
+		to_chat(user, SPAN_NOTICE("You retreat from \the [target], holding your new knowledge close."))
+		to_chat(target, SPAN_DANGER("Your mental complexus is laid bare to judgement of \the [user]."))
+		target.show_psi_assay(user)
 		return TRUE
 
+// Focus, lets you remove hallucination and drowsiness from someone. Grandmaster+ can also cure paralysis.
+/decl/psionic_power/coercion/focus
+	name =          "Focus"
+	cost =          10
+	cooldown =      80
+	use_grab =     TRUE
+	min_rank =      PSI_RANK_OPERANT
+	use_description = "Grab a patient, target the mouth, then use the grab on them while on disarm intent, in order to cure ailments of the mind."
+
+/decl/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.zone_sel.selecting != BP_MOUTH)
+		return FALSE
+	. = ..()
+	if(.)
+		user.visible_message(SPAN_WARNING("\The [user] holds the head of \the [target] in both hands..."))
+		to_chat(user, SPAN_NOTICE("You probe \the [target]'s mind for various ailments.."))
+		to_chat(target, SPAN_WARNING("Your mind is being cleansed of ailments by \the [user]."))
+		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
+			user.psi.backblast(rand(5,10))
+			return TRUE
+		to_chat(user, SPAN_WARNING("You clear \the [target]'s mind of ailments."))
+		to_chat(target, SPAN_WARNING("Your mind is cleared of ailments."))
+
+		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
+		if(coercion_rank >= PSI_RANK_GRANDMASTER)
+			target.AdjustParalysis(-1)
+		target.drowsyness = 0
+		if(istype(target, /mob/living/carbon))
+			var/mob/living/carbon/M = target
+			M.adjust_hallucination(-30)
+		return TRUE
+
+// Mindread, forcing someone to answer a question that you project directly into their head.
 /decl/psionic_power/coercion/mindread
 	name =            "Read Mind"
 	cost =            6
@@ -86,6 +112,9 @@
 	msg_admin_attack("[key_name(user)] read mind of [key_name(target)] with question \"[question]\" and [answer?"got answer \"[answer]\".":"got no answer."]")
 	return TRUE
 
+// MASTER POWERS
+
+// Agony, allows you to psionically stunbaton someone with a bare hand.
 /decl/psionic_power/coercion/agony
 	name =          "Agony"
 	cost =          8
@@ -106,6 +135,7 @@
 		target.stun_effect_act(0, 60, user.zone_sel.selecting)
 		return TRUE
 
+// Spasm, allows you ranged attack someone's hand or arm with a chance to make them drop whatever they're holding.
 /decl/psionic_power/coercion/spasm
 	name =           "Spasm"
 	cost =           15
@@ -135,6 +165,46 @@
 			target.visible_message("<span class='danger'>\The [target] drops what they were holding as their right hand spasms!</span>")
 		return TRUE
 
+// GRANDMASTER POWERS
+
+// Blindstrike, allows you to radially blind, deafen and disorient anyone near you.
+/decl/psionic_power/coercion/blindstrike
+	name =           "Blindstrike"
+	cost =           8
+	cooldown =       120
+	use_ranged =     TRUE
+	use_melee =      TRUE
+	min_rank =       PSI_RANK_GRANDMASTER
+	use_description = "Target the eyes or mouth on disarm intent and click anywhere to use a radial attack that blinds, deafens and disorients everyone near you."
+
+/decl/psionic_power/coercion/blindstrike/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.zone_sel.selecting != BP_MOUTH && user.zone_sel.selecting != BP_EYES)
+		return FALSE
+	. = ..()
+	if(.)
+		user.visible_message(SPAN_DANGER("\The [user] suddenly throws back their head, as though screaming silently!"))
+		to_chat(user, SPAN_DANGER("You strike at all around you with a deafening psionic scream!"))
+		for(var/mob/living/M in orange(user, user.psi.get_rank(PSI_COERCION)))
+			if(M == user)
+				continue
+			var/blocked = 100 * M.get_blocked_ratio(null, PSIONIC)
+			if(prob(blocked))
+				to_chat(M, SPAN_DANGER("A psionic onslaught strikes your mind, but you withstand it!"))
+				continue
+			if(prob(60) && iscarbon(M))
+				var/mob/living/carbon/C = M
+				if(C.can_feel_pain())
+					M.emote("scream")
+			to_chat(M, SPAN_DANGER("Your senses are blasted into oblivion by a psionic scream!"))
+			M.flash_eyes()
+			M.eye_blind = max(M.eye_blind,3)
+			M.ear_deaf = max(M.ear_deaf,6)
+			M.confused = rand(3,8)
+		return TRUE
+
+// PARAMOUNT POWERS
+
+// Mindslave, allows you to make someone a mindless thrall akin to a vampire.
 /decl/psionic_power/coercion/mindslave
 	name =          "Mindslave"
 	cost =          28
@@ -166,59 +236,4 @@
 		to_chat(user, "<span class='danger'>You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!</span>")
 		to_chat(target, "<span class='danger'>Your defenses have eroded away and \the [user] has made you their mindslave.</span>")
 		GLOB.thralls.add_antagonist(target.mind, new_controller = user)
-		return TRUE
-
-/decl/psionic_power/coercion/assay
-	name =            "Assay"
-	cost =            15
-	cooldown =        100
-	use_grab =        TRUE
-	min_rank =        PSI_RANK_OPERANT
-	use_description = "Grab a patient, target the head, then use the grab on them while on disarm intent, in order to perform a deep coercive-redactive probe of their psionic potential."
-
-/decl/psionic_power/coercion/assay/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BP_HEAD)
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message(SPAN_WARNING("\The [user] holds the head of \the [target] in both hands..."))
-		to_chat(user, SPAN_NOTICE("You insinuate your mentality into that of \the [target]..."))
-		to_chat(target, SPAN_WARNING("Your persona is being probed by the psychic lens of \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
-			user.psi.backblast(rand(5,10))
-			return TRUE
-		to_chat(user, SPAN_NOTICE("You retreat from \the [target], holding your new knowledge close."))
-		to_chat(target, SPAN_DANGER("Your mental complexus is laid bare to judgement of \the [user]."))
-		target.show_psi_assay(user)
-		return TRUE
-
-/decl/psionic_power/coercion/focus
-	name =          "Focus"
-	cost =          10
-	cooldown =      80
-	use_grab =     TRUE
-	min_rank =      PSI_RANK_OPERANT
-	use_description = "Grab a patient, target the mouth, then use the grab on them while on disarm intent, in order to cure ailments of the mind."
-
-/decl/psionic_power/coercion/focus/invoke(var/mob/living/user, var/mob/living/target)
-	if(user.zone_sel.selecting != BP_MOUTH)
-		return FALSE
-	. = ..()
-	if(.)
-		user.visible_message(SPAN_WARNING("\The [user] holds the head of \the [target] in both hands..."))
-		to_chat(user, SPAN_NOTICE("You probe \the [target]'s mind for various ailments.."))
-		to_chat(target, SPAN_WARNING("Your mind is being cleansed of ailments by \the [user]."))
-		if(!do_after(user, (target.stat == CONSCIOUS ? 50 : 25), target, 0, 1))
-			user.psi.backblast(rand(5,10))
-			return TRUE
-		to_chat(user, SPAN_WARNING("You clear \the [target]'s mind of ailments."))
-		to_chat(target, SPAN_WARNING("Your mind is cleared of ailments."))
-
-		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
-		if(coercion_rank >= PSI_RANK_GRANDMASTER)
-			target.AdjustParalysis(-1)
-		target.drowsyness = 0
-		if(istype(target, /mob/living/carbon))
-			var/mob/living/carbon/M = target
-			M.adjust_hallucination(-30)
 		return TRUE

@@ -1,5 +1,11 @@
 //Alphabetical order of civilian jobs.
 
+/obj/item/clothing/under/rank
+	sprite_sheets = list(
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_under_throom.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/onmob_under_vox.dmi'
+	)
+
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"

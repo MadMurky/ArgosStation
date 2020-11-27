@@ -1566,10 +1566,6 @@ area/assembly/robotics/office
 
 // Crew
 
-/area/crew_quarters/sleep/cryo
-	name = "\improper Third Deck Cryogenic Storage"
-	icon_state = "Sleep"
-
 /area/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"

@@ -7,6 +7,10 @@
 	var/max_overload = 100
 	var/psi_mode = PSI_IMPLANT_AUTOMATIC
 
+/obj/item/weapon/implantcase/psi_control
+	name = "glass case - 'dampener'"
+	imp = /obj/item/weapon/implant/psi_control
+
 /obj/item/weapon/implant/psi_control/islegal()
 	return TRUE
 

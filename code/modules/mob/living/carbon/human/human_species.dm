@@ -43,6 +43,10 @@
 	h_style = "Skrell Male Tentacles"
 	..(new_loc, SPECIES_SKRELL)
 
+/mob/living/carbon/human/throom/New(var/new_loc)
+	h_style = "Toadstool"
+	..(new_loc, SPECIES_THROOM)
+
 /mob/living/carbon/human/unathi/New(var/new_loc)
 	h_style = "Unathi Horns"
 	..(new_loc, SPECIES_UNATHI)

@@ -289,6 +289,7 @@
 
 #define SPECIES_HUMAN       "Human"
 #define SPECIES_DIONA       "Diona"
+#define SPECIES_THROOM      "Throom"
 #define SPECIES_VOX         "Vox"
 #define SPECIES_VOX_ARMALIS "Vox Armalis"
 #define SPECIES_IPC         "Machine"

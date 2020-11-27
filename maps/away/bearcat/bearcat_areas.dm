@@ -109,22 +109,27 @@
 /area/ship/scrap/maintenance/storage
 	name = "Tools Storage"
 	icon_state = "engineering_storage"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/techstorage
 	name = "Parts Storage"
 	icon_state = "engineering_supply"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/eva
 	name = "EVA Storage"
 	icon_state = "eva"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/engineering
 	name = "Engineering Bay"
 	icon_state = "engineering_supply"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/atmos
 	name = "Atmospherics Comparment"
 	icon_state = "atmos"
+	req_access = list(access_engineering)
 	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambiatm1.ogg')
 
 /area/ship/scrap/maintenance/power
@@ -135,15 +140,19 @@
 /area/ship/scrap/maintenance/engine
 	icon_state = "engine"
 	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambieng1.ogg')
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/engine/aft
 	name = "Main Engine Bay"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/engine/port
 	name = "Port Thruster"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/maintenance/engine/starboard
 	name = "Starboard Thruster"
+	req_access = list(access_engineering)
 
 /area/ship/scrap/command/hallway
 	name = "Command Deck"

@@ -62,6 +62,11 @@
 		/decl/emote/audible/vox_shriek
 	)
 
+/datum/species/throom
+	default_emotes = list(
+		/decl/emote/audible/thrum
+	)
+
 /datum/species/vox/armalis
 	default_emotes = list(
 		/decl/emote/audible/vox_shriek,

@@ -9,6 +9,9 @@
 	use_manifest = TRUE
 	use_sound = null
 
+// OPERANT POWERS
+
+// Psiblade, allows you to manifest a psychic blade. Lethality increases with Psychokinesis rank.
 /decl/psionic_power/psychokinesis/psiblade
 	name =            "Psiblade"
 	cost =            10
@@ -32,6 +35,9 @@
 			else
 				return new /obj/item/psychic_power/psiblade(user, user)
 
+// MASTER POWERS
+
+// Tinker, allows you to manifest psychokinetic tools.
 /decl/psionic_power/psychokinesis/tinker
 	name =            "Tinker"
 	cost =            5
@@ -47,6 +53,9 @@
 	if(.)
 		return new /obj/item/psychic_power/tinker(user)
 
+// GRANDMASTER POWERS
+
+// Telekinesis, allows you to manipulate objects, mobs and machinery at a distance.
 /decl/psionic_power/psychokinesis/telekinesis
 	name =            "Telekinesis"
 	cost =            5
@@ -90,3 +99,49 @@
 					machine.attack_hand(user)
 					return TRUE
 	return FALSE
+
+// PARAMOUNT POWERS
+
+// Teleport, allows you to locally teleport short distances.
+/decl/psionic_power/psychokinesis/teleport
+	name =            "Teleport"
+	cost =            28
+	cooldown =        150
+	use_ranged =      TRUE
+	use_manifest =    FALSE
+	min_rank =        PSI_RANK_PARAMOUNT
+	use_description = "Click on a distant turf while targeting a leg or foot on grab intent to attempt to teleport to that turf."
+	admin_log = FALSE
+	use_sound = 'sound/effects/psi/power_teleport.ogg'
+
+/decl/psionic_power/psychokinesis/teleport/invoke(var/mob/living/user, var/mob/living/target)
+	if(user.a_intent != I_GRAB)
+		return FALSE
+
+	if(!(user.zone_sel.selecting in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
+		return FALSE
+
+	. = ..()
+
+	if(.)
+		if(istype(target, /turf))
+			var/turf/T = target
+			if(T.density)
+				to_chat(user, "<span class='warning'>You cannot teleport into solid walls.</span>")
+				return FALSE
+			if(T.contains_dense_objects())
+				to_chat(user, "<span class='warning'>You cannot teleport to a location with solid objects.</span>")
+				return FALSE
+
+			user.visible_message("<span class='notice'>\The [user] makes a snapping motion with their arms.</span>")
+			user.phase_out(get_turf(user))
+			user.forceMove(target)
+			user.phase_in(get_turf(user))
+
+			for(var/obj/item/grab/G in user.contents)
+				if(G.affecting)
+					G.affecting.phase_out(get_turf(G.affecting))
+					G.affecting.forceMove(locate(T.x+rand(-1,1), T.y+rand(-1,1), T.z))
+					G.affecting.phase_in(get_turf(G.affecting))
+
+	return TRUE

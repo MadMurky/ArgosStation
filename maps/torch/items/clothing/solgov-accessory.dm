@@ -269,9 +269,9 @@ badges
 	icon_state = "tags"
 	badge_string = "Sol-Ceti Axis"
 	slot_flags = SLOT_MASK | SLOT_TIE
-	var/owner_rank
-	var/owner_name
-	var/owner_branch
+	//var/owner_rank
+//	var/owner_name
+//	var/owner_branch
 
 /obj/item/clothing/accessory/badge/solgov/tags/Initialize()
 	. = ..()

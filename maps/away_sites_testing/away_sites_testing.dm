@@ -2,7 +2,7 @@
 	#include "away_sites_testing_lobby.dm"
 
 	#include "blank.dmm"
-
+/*
 	#include "../away/empty.dmm"
 	#include "../away/mining/mining.dm"
 	#include "../away/derelict/derelict.dm"
@@ -22,7 +22,7 @@
 	#include "../away/ascent/ascent.dm"
 	#include "../away/meatstation/meatstation.dm"
 	#include "../away/miningstation/miningstation.dm"
-
+*/
 	#include "../away/voxship/voxship.dm"
 
 	#define using_map_DATUM /datum/map/away_sites_testing

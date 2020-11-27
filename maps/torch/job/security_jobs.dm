@@ -86,6 +86,10 @@
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
 
+/datum/job/detective/equip(var/mob/living/carbon/human/H)
+	if(H.mind.role_alt_title == "Psionic Investigator")
+		psi_faculties = list("[PSI_COERCION]" = PSI_RANK_OPERANT)
+
 /datum/job/officer
 	title = "Master at Arms"
 	total_positions = 4

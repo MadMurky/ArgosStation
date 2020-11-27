@@ -3,7 +3,7 @@
 	name = "Redaction"
 	associated_intent = I_HELP
 	armour_types = list("bio", "rad")
-	
+
 /decl/psionic_power/redaction
 	faculty = PSI_REDACTION
 	admin_log = FALSE
@@ -20,6 +20,9 @@
 		return FALSE
 	. = ..()
 
+// OPERANT POWERS
+
+// Skinsight, allows you to medical scan someone without a health analyzer.
 /decl/psionic_power/redaction/skinsight
 	name =            "Skinsight"
 	cost =            3
@@ -37,6 +40,7 @@
 		to_chat(user, medical_scan_results(target, TRUE, SKILL_MAX))
 		return TRUE
 
+// Mend, allows you to heal organic limbs and organs by touch. Healing potential scales with Redaction rank.
 /decl/psionic_power/redaction/mend
 	name =            "Mend"
 	cost =            7
@@ -115,6 +119,9 @@
 		to_chat(user, SPAN_NOTICE("You can find nothing within \the [target]'s [E.name] to mend."))
 		return FALSE
 
+// GRANDMASTER POWERS
+
+// Cleanse, allows you to remove radiation and heal genetic damage from someone.
 /decl/psionic_power/redaction/cleanse
 	name =            "Cleanse"
 	cost =            9
@@ -147,6 +154,9 @@
 		to_chat(user, SPAN_NOTICE("You can find no genetic damage or radiation to heal within \the [target]."))
 		return TRUE
 
+// PARAMOUNT POWERS
+
+// Revive, allows you to bring someone back from the dead.
 /decl/psionic_power/revive
 	name =            "Revive"
 	cost =            25

@@ -1,12 +1,13 @@
 /obj/machinery/computer/shuttle_control/explore/bearcat
-	name = "exploration shuttle console"
-	shuttle_tag = "Exploration Shuttle"
+	name = "Junebug shuttle console"
+	shuttle_tag = "Junebug"
 
 /datum/shuttle/autodock/overmap/exploration
-	name = "Exploration Shuttle"
+	name = "Junebug"
 	shuttle_area = /area/ship/scrap/shuttle/outgoing
 	dock_target = "bearcat_shuttle"
 	current_location = "nav_bearcat_port_dock_shuttle"
+	range = 2
 
 /datum/shuttle/autodock/ferry/lift
 	name = "Cargo Lift"
@@ -56,9 +57,9 @@
 	base_turf = /turf/simulated/floor
 
 /obj/effect/shuttle_landmark/below_deck_bow
-	name = "Near CSV Bearcat Bow"
+	name = "Near FTV Bow"
 	landmark_tag = "nav_bearcat_below_bow"
 
 /obj/effect/shuttle_landmark/below_deck_starboardastern
-	name = "Near CSV Bearcat Starboard Astern"
+	name = "Near FTV Starboard Astern"
 	landmark_tag = "nav_bearcat_below_starboardastern"

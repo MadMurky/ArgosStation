@@ -100,6 +100,7 @@ h1.alert, h2.alert		{color: #000000;}
 .alien					{color: #543354;}
 .skrell					{color: #00ced1;}
 .soghun					{color: #228b22;}
+.throom 				{color: #41255c;}
 .yeosa					{color: #218b89;}
 .nabber_lang			{color: #525252;}
 .changeling				{color: #800080;}

@@ -21,7 +21,7 @@
 	if(isliving(AM))
 		if(istype(AM,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = AM
-			if(H.species && H.species.get_bodytype() == SPECIES_VOX)
+			if(H.species && H.species.get_bodytype() == SPECIES_VOX || H.species.get_bodytype() == SPECIES_VOX_ARMALIS)
 				return
 		else
 			var/mob/living/L = AM

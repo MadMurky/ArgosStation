@@ -175,6 +175,11 @@
 	emote_message_3p = "USER SHRIEKS!"
 	emote_sound = 'sound/voice/shriek1.ogg'
 
+/decl/emote/audible/thrum
+	key ="thrum"
+	emote_message_3p = "USER thrums."
+	emote_sound = 'sound/voice/throom.ogg'
+
 /decl/emote/audible/roar
 	key = "roar"
 	emote_message_3p = "USER roars!"
@@ -195,7 +200,7 @@
 	key ="hiss_"
 	emote_message_3p_target = "USER hisses softly at TARGET."
 	emote_message_3p = "USER hisses softly."
-	
+
 /decl/emote/audible/lizard_bellow
 	key = "bellow"
 	emote_message_3p_target = "USER bellows deeply at TARGET!"

@@ -113,7 +113,7 @@
 		. += " <a href='?src=\ref[src];backpack=[pref.backpack.name];tweak=\ref[bt]'>[bt.get_ui_content(get_backpack_metadata(pref.backpack, bt))]</a>"
 	. += "<br>"
 	. += "Default Suit Sensor Setting: <a href='?src=\ref[src];change_sensor_setting=1'>[pref.sensor_setting]</a><br />"
-	. += "Suit Sensors Locked: <a href='?src=\ref[src];toggle_sensors_locked=1'>[pref.sensors_locked ? "Locked" : "Unlocked"]</a><br />"
+	. += "Suit Sensors Locked: <a href='?src=\ref[src];toggle_sensors_locked=1'>[pref.sensors_locked ? "Locked" : "Unlocked"]</a><br/>"
 	return jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/equipment/proc/get_underwear_metadata(var/underwear_category, var/datum/gear_tweak/gt)

@@ -87,17 +87,6 @@
 	outfit_type = /decl/hierarchy/outfit/job/service/janitor
 
 //More or less assistants
-/datum/job/librarian
-	title = "Librarian"
-	department = "Civilian"
-	department_flag = CIV
-	total_positions = 1
-	spawn_positions = 1
-	supervisors = "the head of personnel"
-	access = list(access_library, access_maint_tunnels)
-	minimal_access = list(access_library)
-	alt_titles = list("Journalist")
-	outfit_type = /decl/hierarchy/outfit/job/librarian
 
 /datum/job/lawyer
 	title = "Internal Affairs Agent"

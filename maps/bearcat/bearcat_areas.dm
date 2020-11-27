@@ -3,7 +3,7 @@
 	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg')
 
 /area/ship/scrap/crew
-	name = "\improper Crew Compartements"
+	name = "\improper Crew Compartments"
 	icon_state = "crew_quarters"
 
 /area/ship/scrap/crew/hallway/port
@@ -65,14 +65,14 @@
 	icon_state = "green"
 
 /area/ship/scrap/unused
-	name = "\improper Compartment 2-B"
+	name = "\improper Operating Theatre"
 	icon_state = "yellow"
-	turf_initializer = /decl/turf_initializer/maintenance
-	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg')
+	req_access = list(access_medical)
 
 /area/ship/scrap/hidden
-	name = "\improper Unknown" //shielded compartment
+	name = "\improper Chemical Lab"
 	icon_state = "auxstorage"
+	req_access = list(access_medical)
 
 /area/ship/scrap/escape_port
 	name = "\improper Port Escape Pods"
@@ -84,10 +84,11 @@
 
 /area/ship/scrap/broken1
 	name = "\improper Robotic Maintenance"
+	req_access = list(access_robotics)
 	icon_state = "green"
 
 /area/ship/scrap/broken2
-	name = "\improper Compartment 1-B"
+	name = "\improper Auxiliary EVA"
 	icon_state = "yellow"
 
 /area/ship/scrap/gambling
@@ -109,14 +110,17 @@
 /area/ship/scrap/maintenance/storage
 	name = "\improper Tools Storage"
 	icon_state = "engineering_storage"
+	req_access = list(access_engine)
 
 /area/ship/scrap/maintenance/techstorage
 	name = "\improper Parts Storage"
 	icon_state = "engineering_supply"
+	req_access = list(access_engine)
 
 /area/ship/scrap/maintenance/eva
 	name = "\improper EVA Storage"
 	icon_state = "eva"
+	req_access = list(access_engine)
 
 /area/ship/scrap/maintenance/engineering
 	name = "\improper Engineering Bay"
@@ -124,7 +128,7 @@
 	req_access = list(access_engine)
 
 /area/ship/scrap/maintenance/atmos
-	name = "\improper Atmospherics Comparment"
+	name = "\improper Atmospherics Compartment"
 	icon_state = "atmos"
 	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambiatm1.ogg')
 	req_access = list(access_engine)
@@ -149,6 +153,14 @@
 /area/ship/scrap/maintenance/engine/starboard
 	name = "\improper Starboard Thruster"
 
+/area/ship/scrap/maintenance/engine/teleporter
+	name = "\improper Bearcat Teleporter"
+
+/area/ship/scrap/maintenance/dronebay
+	name = "\improper Drone Bay"
+	req_access = list(access_heads)
+	icon_state = "yellow"
+
 /area/ship/scrap/command/hallway
 	name = "\improper Command Deck"
 	icon_state = "centcom"
@@ -169,8 +181,22 @@
 	icon_state = "tcomsatcham"
 	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/signal.ogg','sound/ambience/sonar.ogg')
 
+/area/ship/scrap/security
+	name = "\improper Security - Lobby"
+	icon_state = "red"
+
+/area/ship/scrap/security/brig
+	name = "\improper Security - Brig"
+	icon_state = "sec_prison"
+	req_access = list(access_brig)
+
+/area/ship/scrap/security/enforcer
+	name = "\improper Security - Office"
+	req_access = list(access_security)
+	icon_state = "brig"
+
 /area/ship/scrap/shuttle/outgoing
-  name = "\improper Exploration Shuttle"
+  name = "\improper Junebug"
   icon_state = "tcomsatcham"
 
 /area/ship/scrap/shuttle/lift

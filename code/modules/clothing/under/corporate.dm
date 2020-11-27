@@ -31,6 +31,7 @@
 	gender_icons = 1
 	sprite_sheets = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_corporate_unathi.dmi',
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_under_throom.dmi'
 		)
 	starting_accessories = list(/obj/item/clothing/accessory/tunic)
 
@@ -48,13 +49,14 @@
 	item_state = "lb_suit"
 	worn_state = "work"
 	armor = list(
-		melee = ARMOR_MELEE_MINOR, 
+		melee = ARMOR_MELEE_MINOR,
 		bio = ARMOR_BIO_MINOR
 		)
 	item_icons = list(slot_w_uniform_str = 'icons/mob/onmob/onmob_under_corporate.dmi')
 	gender_icons = 1
 	sprite_sheets = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_corporate_unathi.dmi',
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_under_throom.dmi'
 		)
 
 /obj/item/clothing/under/rank/ntpilot

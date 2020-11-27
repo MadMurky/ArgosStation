@@ -315,6 +315,12 @@
 	pry_time = 8 SECONDS
 	pry_desc = "clawing"
 
+/obj/effect/shuttle_landmark/nav_miningstation/mining_hangar
+	name = "Mining Station Hangar"
+	landmark_tag = "nav_mining_hangar"
+	base_area = /area/miningstation/hangar
+	base_turf = /turf/simulated/floor/plating
+
 ////////////////////////////Notes and papers
 
 /obj/item/weapon/paper/miner_note_1

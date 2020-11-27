@@ -4,7 +4,7 @@
 
 /datum/category_item/player_setup_item/physical/flavor
 	name = "Flavor"
-	sort_order = 4
+	sort_order = 5
 
 /datum/category_item/player_setup_item/physical/flavor/load_character(var/savefile/S)
 	S["flavor_texts_general"]	>> pref.flavor_texts["general"]

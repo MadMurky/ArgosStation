@@ -81,6 +81,9 @@
 
 	if(psi_latency_chance && prob(psi_latency_chance))
 		H.set_psi_rank(pick(PSI_COERCION, PSI_REDACTION, PSI_ENERGISTICS, PSI_PSYCHOKINESIS), 1, defer_update = TRUE)
+	if(H.client.prefs.psionic)
+		psi_faculties = list(H.client.prefs.faculty = H.client.prefs.psi_rank)
+		give_psionic_implant_on_join = H.client.prefs.implant
 	if(islist(psi_faculties))
 		for(var/psi in psi_faculties)
 			H.set_psi_rank(psi, psi_faculties[psi], take_larger = TRUE, defer_update = TRUE)

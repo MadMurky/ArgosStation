@@ -9,6 +9,7 @@
 	item_icons = list(slot_w_uniform_str = 'icons/mob/onmob/onmob_under_pants.dmi')
 	sprite_sheets = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_pants_unathi.dmi',
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_under_throom.dmi'
 		)
 
 /obj/item/clothing/under/shorts/red

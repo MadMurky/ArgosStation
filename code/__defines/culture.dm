@@ -193,3 +193,6 @@
 #define FACTION_ASCENT_ALATE     "Ascent Alate"
 #define FACTION_ASCENT_SERPENTID "Ascent Serpentid"
 #define RELIGION_KHARMAANI       "Nest-Lineage Veneration"
+
+//Throom
+#define CULTURE_THROOM      	 "Throom"

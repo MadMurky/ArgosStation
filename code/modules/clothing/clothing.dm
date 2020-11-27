@@ -232,6 +232,7 @@ BLIND     // can't see anything
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_eyes_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_eyes_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_eyes_unathi.dmi',
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_eyes_throom.dmi'
 	)
 
 /obj/item/clothing/glasses/get_icon_state(mob/user_mob, slot)
@@ -737,7 +738,7 @@ BLIND     // can't see anything
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_suit_unathi.dmi',
 		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_suit_gas.dmi',
 		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_suit_alate.dmi',
-		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_suit_gyne.dmi'
+		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_suit_gyne.dmi',
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -794,7 +795,8 @@ BLIND     // can't see anything
 		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_under_gas.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_unathi.dmi',
 		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_under_alate.dmi',
-		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_under_gyne.dmi'
+		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_under_gyne.dmi',
+		SPECIES_THROOM = 'icons/mob/species/throom/onmob_under_throom.dmi'
 	)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
@@ -1050,7 +1052,7 @@ BLIND     // can't see anything
 	icon = 'icons/obj/clothing/obj_hands_ring.dmi'
 	slot_flags = SLOT_GLOVES
 	gender = NEUTER
-	species_restricted = list("exclude", SPECIES_NABBER, SPECIES_DIONA)
+	species_restricted = list("exclude", SPECIES_NABBER, SPECIES_DIONA, SPECIES_THROOM)
 	var/undergloves = 1
 
 

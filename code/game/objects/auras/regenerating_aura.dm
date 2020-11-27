@@ -178,3 +178,17 @@
 	brute_mult = 1.5
 	organ_mult = 3
 	tox_mult = 2
+
+/obj/aura/regenerating/human/throom
+	nutrition_damage_mult = 0.5
+	brute_mult = 4
+	fire_mult = 4
+	organ_mult = 2
+	tox_mult = 2
+	regen_message = "<span class='warning'>Your inner being tingles as your ORGAN mends..</span>"
+	grow_chance = 5
+	grow_threshold = 100
+
+/obj/aura/regenerating/human/throom/external_regeneration_effect(var/obj/item/organ/external/O, var/mob/living/carbon/human/H)
+	to_chat(H, "<span class='warning'>Your flesh quickly expands outward to replace your [O.name].</span>")
+	H.adjust_nutrition(-external_nutrition_mult)

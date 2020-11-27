@@ -523,6 +523,15 @@
 		/obj/item/weapon/implantcase/imprinting = 3
 		)
 
+/obj/item/weapon/storage/box/psi
+	name = "box of dampener implants"
+	desc = "A box full of neural implants for regulating psionic ability."
+	startswith = list(
+		/obj/item/weapon/implanter,
+		/obj/item/weapon/implantpad,
+		/obj/item/weapon/implantcase/psi_control = 3
+		)
+
 /obj/item/weapon/storage/box/detergent
 	name = "detergent pods bag"
 	desc = "A bag full of juicy, yummy detergent pods. This bag has been labeled: Tod Pods, a Waffle Co. product."
